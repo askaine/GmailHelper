@@ -1,0 +1,87 @@
+
+
+
+
+.ez-filter-section {
+    padding: 16px;
+    margin-bottom: 16px;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    background: #9cb1bb;
+    border: 5px double;
+    border-color:antiquewhite;
+    border-radius: 16px;
+}
+
+.ez-filter-label {
+    font-weight: 500;
+    margin-bottom: 16px;
+    padding: 16px;
+    display: block;
+    color: #292a2e;
+    font-size: 14px;
+}
+
+.ez-chip-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    align-items: flex-start;
+}
+
+.ez-filter-chip {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: 2px groove #141c14;
+    background: #3ed7a2;
+    border-radius: 16px;
+    color: #313b42;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.5s ease-in-out;
+}
+
+.ez-filter-chip:hover{
+    background: #4cff11;
+}
+
+.ez-filter-chip.active {
+    background: #4cffc1;
+    border-color: #141c14;
+    color: #3c4043;
+}
+
+.ez-apply-filters-btn{
+    background: #1a7777;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.ez-apply-filters-btn:hover {
+    background: #1558d6;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+.ez-reset-filters-btn {
+    background: #1a7777;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.ez-reset-filters-btn:hover {
+    background: #1558d6;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
