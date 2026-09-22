@@ -2,18 +2,28 @@ import * as InboxSDK from '@inboxsdk/core';
 
 InboxSDK.load(2, process.env.INBOX_SDK_KEY).then((sdk) => {
     console.log("NPM InboxSDK loaded successfully!");
+    injectFloatingButton(sdk);
+});
 
-    const safeIconUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>';
+function injectFloatingButton(sdk) {
+	if (document.getElementById('ez-quick-filters-button')) return;
 
-    sdk.Toolbars.addToolbarButtonForApp({
-        title: 'Easy Filters',
-        iconUrl: safeIconUrl,
-        onClick: (event) => {
-            openEasyFiltersModal(sdk);
-        }
+	const btn = document.createElement('button');
+	btn.id = 'ez-quick-filters-button';
+	btn.className = 'ez-floating-btn';
+
+	btn.innerHTML = `
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+        Smart Filters
+	`;
+
+	btn.addEventListener('click', () => {
+		openEasyFiltersModal(sdk);
 	});
 
-});
+	document.body.appendChild(btn);
+}
+
 
 let modalStateContainer = null;
 
@@ -21,7 +31,7 @@ function openEasyFiltersModal(sdk) {
 
 	if(modalStateContainer) {
 		sdk.Widgets.showModalView({
-			title: '✨ Smart Filters',
+			title: 'Quick Filters',
 			el: modalStateContainer
 		});
 		return;
@@ -31,88 +41,78 @@ function openEasyFiltersModal(sdk) {
 
 
 	modalStateContainer.innerHTML = `
-		<div class="ez-filter-section">
-			<label class="ez-filter-label">Quick Filters</label>
-			<div class="ez-chip-group">
-				<button class="ez-filter-chip" data-query="is:unread">📩 Unread</button>
-				<button class="ez-filter-chip" data-query="has:attachment">📎 Has Attachment
-					<span class="info-icon" aria-label="Information">
-						i
-						<span class="tooltip-text">
-							Find emails that include:
-								Attachments
-								Inline images
-								YouTube videos
-								Drive files
-								Google Docs
-								Google Sheets
-								Google Slides
-							</span>
-					  </span
-				</button>
+    <div class="ez-filter-section">
+        <label class="ez-filter-label"></label>
+        
+        <div class="ez-chip-group">
+            
+            <!-- Simple Filters -->
+            <button class="ez-filter-chip" data-query="is:unread">📩 Unread</button>
+            
+            <button class="ez-filter-chip" data-query="has:attachment">📎 Has Attachment
+                <span class="info-icon" aria-label="Information">i
+                    <span class="tooltip-text">
+                        Find emails that include:<br>
+                        • Attachments<br>
+                        • Inline images<br>
+                        • Google Drive/Docs links
+                    </span>
+                </span>
+            </button>
 
-				<div class="ez-complex-filter">
-					<button class="ez-filter-chip" data-prefix="newer_than:" data-suffix="d" data-default="7" data-target="#newer_than_days">📅 Last X Days
-						<span class="info-icon" aria-label="Information">
-						i
-						<span class="tooltip-text">
-							Search for emails older or newer than a time period. Use d (day), m (month), or y (year)
-							</span>
-					  </span
-					</button>
-					<div class="ez-input-container" style="display: none; margin-top: 5px;">
-                        <input type="number" class="ez-input" id="newer_than_days" placeholder="Days (default 7)">
-                    </div>
-				</div>
+            <!-- Complex Filters -->
+            <div class="ez-complex-filter">
+                <button class="ez-filter-chip" data-prefix="newer_than:" data-suffix="d" data-default="7" data-target="#newer_than_days">📅 Last X Days
+                    <span class="info-icon" aria-label="Information">i
+                        <span class="tooltip-text">Search for emails newer than a time period.</span>
+                    </span>
+                </button>
+                <div class="ez-input-container" style="display: none;">
+                    <input type="number" class="ez-input" id="newer_than_days" placeholder="Days (default 7)">
+                </div>
+            </div>
 
-				<div class="ez-complex-filter">
-					<button class="ez-filter-chip" data-prefix="from:" data-suffix="" data-default="example@example.com" data-target="#from">from
-						<span class="info-icon" aria-label="Information">
-						i
-						<span class="tooltip-text">
-							Find emails sent from a specific person.
-							</span>
-					  </span
-					</button>
-					<div class="ez-input-container" style="display: none; margin-top: 5px;">
-                        <input type="text" class="ez-input" id="from" placeholder="example@example.com">
-                    </div>
-				</div>
+            <div class="ez-complex-filter">
+                <button class="ez-filter-chip" data-prefix="from:" data-suffix="" data-default="example@example.com" data-target="#from">👤 From
+                    <span class="info-icon" aria-label="Information">i
+                        <span class="tooltip-text">Find emails sent from a specific person.</span>
+                    </span>
+                </button>
+                <div class="ez-input-container" style="display: none;">
+                    <input type="text" class="ez-input" id="from" placeholder="Sender (e.g. bob@gmail.com)">
+                </div>
+            </div>
 
-				<div class="ez-complex-filter">
-					<button class="ez-filter-chip" data-prefix="to:" data-suffix="" data-default="example@example.com" data-target="#to">to
-						<span class="info-icon" aria-label="Information">
-						i
-						<span class="tooltip-text">
-							Find emails sent to a specific person.
-							</span>
-					  </span
-					</button>
-					<div class="ez-input-container" style="display: none; margin-top: 5px;">
-                        <input type="text" class="ez-input" id="to" placeholder="example@example.com">
-                    </div>
-				</div>
+            <div class="ez-complex-filter">
+                <button class="ez-filter-chip" data-prefix="to:" data-suffix="" data-default="example@example.com" data-target="#to">🎯 To
+                    <span class="info-icon" aria-label="Information">i
+                        <span class="tooltip-text">Find emails sent to a specific person.</span>
+                    </span>
+                </button>
+                <div class="ez-input-container" style="display: none;">
+                    <input type="text" class="ez-input" id="to" placeholder="Recipient">
+                </div>
+            </div>
 
-				<div class="ez-complex-filter">
-					<button class="ez-filter-chip" data-prefix="subject:" data-suffix="" data-default="" data-target="#subject">subject
-						<span class="info-icon" aria-label="Information">
-						i
-						<span class="tooltip-text">
-							Find emails by a word or phrase in the subject line.
-							</span>
-					  </span
-					</button>
-					<div class="ez-input-container" style="display: none; margin-top: 5px;">
-                        <input type="text" class="ez-input" id="subject" placeholder="important">
-                    </div>
-				</div>
+            <div class="ez-complex-filter">
+                <button class="ez-filter-chip" data-prefix="subject:" data-suffix="" data-default="" data-target="#subject">🏷️ Subject
+                    <span class="info-icon" aria-label="Information">i
+                        <span class="tooltip-text">Find emails by a word or phrase in the subject.</span>
+                    </span>
+                </button>
+                <div class="ez-input-container" style="display: none;">
+                    <input type="text" class="ez-input" id="subject" placeholder="Keyword (e.g. invoice)">
+                </div>
+            </div>
 
+        </div>
 
-			</div>
-			<button class="ez-apply-filters-btn">Apply Filters</button>
-			<button class="ez-reset-filters-btn">Reset Filters</button>
-		</div>
-	`;
+        <div class="ez-action-footer">
+            <button class="ez-reset-filters-btn">Clear</button>
+            <button class="ez-apply-filters-btn">Apply Filters</button>
+        </div>
+    </div>
+`;
 	
 	const chips = modalStateContainer.querySelectorAll('.ez-filter-chip');	
 	chips.forEach(chip =>{
@@ -186,7 +186,7 @@ function openEasyFiltersModal(sdk) {
 	});
 
 	sdk.Widgets.showModalView({
-		title: '✨ Smart Filters',
+		title: 'Quick Filters',
 		el: modalStateContainer
 	});
 	

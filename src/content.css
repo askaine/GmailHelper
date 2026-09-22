@@ -1,103 +1,154 @@
+.ez-floating-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 80px; 
+    z-index: 99999;
+    background: #1a73e8; 
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(60,64,67,0.3), 0 1px 3px rgba(60,64,67,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+}
 
+.ez-floating-btn:hover {
+    background: #1558d6; 
+    box-shadow: 0 6px 12px rgba(60,64,67,0.3), 0 2px 4px rgba(60,64,67,0.2);
+    transform: translateY(-2px); 
+}
 
+.ez-floating-btn svg {
+    fill: #ffffff;
+    width: 20px;
+    height: 20px;
+}
 
 
 .ez-filter-section {
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    color: #202124;
     padding: 16px;
-    margin-bottom: 16px;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    background: #9cb1bb;
-    border: 5px double;
-    border-color:antiquewhite;
-    border-radius: 16px;
+    width: 750px;
+    max-width: 90vw;
 }
 
 .ez-filter-label {
     font-weight: 500;
-    margin-bottom: 16px;
-    padding: 16px;
+    margin-bottom: 12px;
     display: block;
-    color: #292a2e;
+    color: #202124;
     font-size: 14px;
 }
 
 .ez-chip-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.ez-complex-filter {
     display: flex;
+    flex-direction: column;
     gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-    align-items: flex-start;
+    width: 100%;
 }
 
 .ez-filter-chip {
-    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
     cursor: pointer;
-    border: 2px groove #141c14;
-    background: #3ed7a2;
-    border-radius: 16px;
-    gap: 8px;
-    color: #313b42;
-    font-size: 13px;
+    border: 1px solid #dadce0;
+    background: #ffffff;
+    border-radius: 8px;
+    gap: 6px;
+    color: #3c4043;
+    font-size: 12px;
     font-weight: 500;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
-.ez-filter-chip:hover{
-    background: #4cff11;
+.ez-filter-chip:hover {
+    background: #f1f3f4;
 }
 
 .ez-filter-chip.active {
-    background: #4cffc1;
-    border-color: #141c14;
-    color: #3c4043;
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
 }
 
-.ez-apply-filters-btn{
-    background: #1a7777;
+.ez-action-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #dadce0;
+    justify-content: flex-end;
+}
+
+.ez-apply-filters-btn {
+    background: #1a73e8;
     color: white;
     border: none;
-    padding: 10px 24px;
+    padding: 8px 24px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
-    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    transition: background-color 0.2s;
 }
 
 .ez-apply-filters-btn:hover {
     background: #1558d6;
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
 }
 
 .ez-reset-filters-btn {
-    background: #1a7777;
-    color: white;
+    background: transparent;
+    color: #5f6368;
     border: none;
-    padding: 10px 24px;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
-    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    transition: background-color 0.2s;
 }
 
 .ez-reset-filters-btn:hover {
-    background: #1558d6;
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    background: #f1f3f4;
+    color: #202124;
 }
 
 .ez-input {
-    border-radius: 50px;
-    background-color: #b0dbff;
-    border: 2px solid #3b82f6;
-    padding: 10px 24px;
-    font-size: 14px;
-    color: #333;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #202124;
     outline: none;
-    transition: border-color 0.5s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
 }
+
 .ez-input:focus {
-    border-color: #1d4ed8;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 1px #1a73e8;
 }
 
 .info-icon {
@@ -105,52 +156,62 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 18px;
-    height: 18px;
-    background-color: #1a7777;
-    color: black;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 1px solid #bdc1c6;
+    color: #5f6368;
     border-radius: 50%;
     font-family: serif;
-    font-style: italic;
-    font-size: 12px;
+    font-size: 11px;
     cursor: help;
+}
+
+.ez-filter-chip:hover .info-icon {
+    border-color: #5f6368;
+}
+
+.ez-filter-chip.active .info-icon {
+    border-color: #1a73e8;
+    color: #1a73e8;
 }
 
 .tooltip-text {
     position: absolute;
-    bottom: 135%;
+    bottom: 150%;
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
-    max-width: 200px;
-    background-color: #333;
+    max-width: 220px;
+    background-color: #202124;
     color: #fff;
-    text-align: center;
+    text-align: left;
     padding: 8px 12px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 12px;
     font-style: normal;
-    font-family: sans-serif;
+    font-family: "Google Sans", Roboto, sans-serif;
+    line-height: 1.4;
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    transition-delay: 0s; 
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .tooltip-text::after {
-  content: "";
-  position: absolute;
-  top: 100%; 
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #333 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #202124 transparent transparent transparent;
 }
 
 .info-icon:hover .tooltip-text {
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0.5s; 
+    opacity: 1;
+    visibility: visible;
 }
